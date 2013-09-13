@@ -210,9 +210,23 @@
 				<section>
 					<section data-markdown>
 						<script type="text/template">
+							## The UNIX Filesystem
 							* No C:\ drive, no D:\ drive; just one root '/' directory.
 							* Everything is a file (or a process).
 							TODO: Insert Linux directory image here.
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## A UNIX Program
+							* Input
+								* arguments
+								* STDIN (standard input)
+								* program may open arbitrary files for input
+							* output
+								* STDOUT
+								* STDERR
+								* program may open arbitrary files to output
 						</script>
 					</section>
 				</section>
@@ -291,6 +305,28 @@
 					</section>
 					<section data-markdown>
 						<script type="text/template">
+							## alias
+
+								alias ..='cd ..'
+								alias /='cd /'
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Some basic commands
+							* __pwd__ print working directory
+							* __cd__ change working directory
+							* __ls__ list files
+							* __which__ locate a command
+							* __grep__ print lines matching a pattern
+							* __find__ search for files in a directory
+							* __xargs__ TODO
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
 							## pwd
 							### print working directory
 								pwd
@@ -301,6 +337,7 @@
 						<script type="text/template">
 							## cd
 							### change working directory
+
 								pwd
 								cd /
 								pwd
@@ -311,6 +348,346 @@
 								cd <username>
 								cd /<username>
 								# ce: no such file or directory: /<username>
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## ls
+							### list files
+
+								ls # list files
+								ls -a # lists all files, including . .. and hidden files
+								ls -l
+								ls / # list files in '/'
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## which
+							### locate a command
+
+								which sh
+								which -a vi
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## grep
+							### print lines matching a pattern
+
+							TODO: example
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## find
+							### search for files in a directory hierarchy
+
+							TODO: example
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## xargs
+
+								find /etc -name '*\.sh' | xargs head -2
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Filesystem Manipulation
+
+							* mkdir
+							* rmdir
+							* touch
+							* rm
+							* cp
+							* mv
+							* ln
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## mkdir
+							### make directory
+
+								cd $HOME
+								mkdir template
+								ls # ... tmp ...
+								cd tmp
+								mkdir dir1 dir2 dir3 .dir4
+								ls # dir1 dir2 dir3
+								ls -a # . .. dir1 dir2 dir3 .dir4
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## rmdir
+							### remove directory
+
+								ls -a # . .. dir1 dir2 dir3 .dir4
+								rmdir dir3 .dir4
+								cd ..
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## touch
+							### create files and alter timestamps
+
+								cd tmp
+								touch file1
+								touch file2 file3 file4
+								ls -l # note the timestamp
+								touch file1
+								ls -l # the timestamp has changed
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## rm
+							### remove files
+								rm file3
+								cd ..
+								rm tmp
+								rm -r tmp
+								# rm -rf
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## cp
+							### copy files
+
+								mkdir tmp
+								cd tmp
+								touch file1
+								cp file1 file2
+								cd ..
+								cp -a tmp tmp.bak
+								# -a preserves timestamps, permissions, and link References
+								ls -a
+								cp tmp/file2 tmp.bak
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## mv
+							### move files
+
+								mv tmp/file2 tmp.bak
+								# TODO: will mv clobber?
+								# TODO
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## ln
+							### make links between files
+
+								ln -s tmp tmp.ln
+								ln -s tmp/file1
+								ln -a tmp/file1 tmp_file1
+								ls -sP tmp/file1 tmp_file1
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Text Manipulation and Streams
+
+							* Pagers
+								* more
+								* less
+							* yes
+							* nl
+							* head
+							* tail
+							* cut
+							* paste
+							* sort
+							* uniq
+							* wc
+							* split
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## more
+							TODO
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## less
+							TODO
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## yes
+							### output a string repeatedly until killed
+
+								yes
+								yes "no"
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## nl
+							### number lines
+
+								yes | nl
+								cd tmp
+								echo "hello world" > hello
+								echo "line1
+								line2" > hello2
+								nl hello hello2
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## head
+							### output the first parts of file
+
+								yes "YEAH" | nl | head -1000 > 1000yeahs
+								head 1000yeahs
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## tail
+							### output the last parts of file
+
+								yes "ARGH" | nl | head -1000 | tail -10
+								yes "ARGH" | nl | head -1000 | tail -n+3 | head
+								tail 1000yeahs
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## cut
+							### remove columns from each line of files
+
+								wget ftp://ftp.ncbi.nih.gov/genomes/Homo_sapiens/\
+								CHR_22/hs_ref_GRCh37.p13_chr22.asn.gz
+								head *ptt
+								cut -f2 *ptt | head
+								cut -f2,5 *ptt | head
+								cut -f2,5 *ptt | head -30
+								cut -f1 *ptt | cut -f1 -d'.' | head
+								cut -c1-20 *ptt | head
+						</script>
+					</section> 
+					<section data-markdown>
+						<script type="text/template">
+						## paste
+						### merge lines of files
+
+							tail -n+3 *ptt | cut -f5 > genes
+							tail -n+3 *ptt | cut -f1 > locs
+							paste genes locs genes | head
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						## sort
+						### sort lines of files
+
+							sort genes | less
+							sort -r genes | less # reverse order
+							sort -R genes | less # random order
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						## uniq
+						### report or omit repeated lines
+
+							cut -f2 *ptt | tail -n+4 | head
+							cut -f2 *ptt | tail -n+4 | sort | uniq -c | sort -k1 -rn
+							cut -f3 *ptt | tail -n+4 | uniq -c | sort -k2 -rn # output number
+							cut -f9 *ptt > products
+							sort products | uniq -d # only print duplicate lines
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						## wc
+						### print newline, word, and byte counts for each file
+
+							wc *ptt # lines words bytes
+							wc -l *ptt # number of lines
+							wc -L *ptt #longest line length; e.g. for style checking
+						</script>
+					</section>
+
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## System Management
+
+							* uname
+							* hostname
+							* whoami
+							* ps
+							* top
+							* kill
+							* time
+							* tar
+							* gzip
+							* df
+							* du
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Networking
+
+							* wget
+							* ssh
+							* scp
+							* rsync
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Help
+
+							* man
+							* info
+							* help
+							* apropos
+							* the --help argument
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Scripting
+
+							* the shebang
+							* control logic
+							* test
+							* .bash_profile
+							* other scripting languages
+							* make and Makefiles
+							* cron and crontab
 						</script>
 					</section>
 				</section>
