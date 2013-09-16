@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+    <title>UNIX and Shell Scripting</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -202,7 +202,9 @@
 					</section>
 					<section data-markdown>
 						<script type="text/template">
-							TODO: Insert K.I.S.S. graphic here.
+						# K.I.S.S
+
+						Keep It Simple, Stupid
 						</script>
 					</section>
 				</section>
@@ -213,8 +215,10 @@
 							## The UNIX Filesystem
 							* No C:\ drive, no D:\ drive; just one root '/' directory.
 							* Everything is a file (or a process).
-							TODO: Insert Linux directory image here.
 						</script>
+					</section>
+					<section>
+						<img src="images/FS-layout.png">
 					</section>
 					<section data-markdown>
 						<script type="text/template">
@@ -281,11 +285,9 @@
 								# Hello World!
 								# We are at the workshop
 								cat helloworldfile placefile > helloworldfile
-								# <no output> (why?)
 								cat helloworldfile
 								# We are at the workshop
 								echo 'Are you coming?' >> helloworldfile
-								# <no output>
 								cat helloworldfile
 								# We are at the workshop
 								# Are you coming?
@@ -575,6 +577,7 @@
 
 								yes "ARGH" | nl | head -1000 | tail -10
 								yes "ARGH" | nl | head -1000 | tail -n+3 | head
+								# tail -n+3 skip first three lines
 								tail 1000yeahs
 						</script>
 					</section>
@@ -664,6 +667,111 @@
 							* du
 						</script>
 					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## uname
+							### print system information
+
+								uname -a
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## hostname
+							### show or set the system host name
+
+								hostname
+								cat /etc/hostname
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## whoami
+							### print username
+
+								whoami
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## ps
+							### list running processes
+
+								sleep 60 &
+								ps -ef | grep sleep
+								ps -ef | grep sleep | grep -v "grep"
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## top
+							### display processes
+
+								top
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## kill
+							### kill processes or send a signal to processes
+
+								sleep 60 &
+								kill `ps xw | grep sleep | cut -f1 -d ' ' | head -l`
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## time
+							### run programs and summarize system resource usage
+
+								time sleep 5
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## tar
+							### archive files
+
+								mkdir genomes
+								mv *ptt* genome/
+								tar -cvf genome.tar genome
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## gzip
+							### compress files
+
+								gzip genome.tar
+								mkdir temp
+								cp genome.tar.gz temp
+								cd temp
+								tar -xzvf genome.tar.gz
+								cd ..
+								gunzip genome.tar.gz
+								rm -rf genome.tar genome temp
+								wget ftp://ftp.ncbi.nig.gov/genomes/Homo_sapiens/\
+								CHR_22/hs_ref_GRCh37.p13_chr22.asn.gz
+								zcat hs_ref_GRCh37.p13_chr22.asn.gz | nl | head -1000 | tail -20
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## df
+							### overall disk space usage
+
+								df -Th
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## du
+							### directory space utilization
+
+								du --max-depth=1 -b | sort -k1 -rn
+								du --max-depth=1 -bh
+						</script>
+					</section>
 				</section>
 
 				<section>
@@ -675,6 +783,34 @@
 							* ssh
 							* scp
 							* rsync
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## ssh
+							### SSH client
+
+								ssh jchoo@sunfire.comp.nus.edu.sg
+								# ssh config
+								ls ~/.ssh
+								less ~/.ssh/config
+								# generate ssh key
+								ssh-keygen -t rsa -C "your_email@example.com"
+								ssh-add id_rsa
+
+								# binding remote ports
+								ssh -L 9080:aquaroris.net:8080 aqnet
+								# can also bind databases
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## scp
+							### copy remote files
+
+								scp /var/log/syslog sunfire:
+								# copies to home folder
+
 						</script>
 					</section>
 				</section>
@@ -712,23 +848,45 @@
 				<section>
 					<section data-markdown>
 						<script type="text/template">
+							## Control Logic and more Shell Commands
+
+							* { }
+							* if
+							* while
+							* for
+							* test
+							* read
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
 							DUMMY SLIDE FOR COPY PASTE
 						</script>
 					</section>
 				</section>
 
 				<section>
-					<h2>References</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
+					<section data-markdown>
+						<script type="text/template">
+							## References
+
+							* [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/) by Eric S. Raymond
+							* [bash Cookbook](http://bashcookbook.com/) by Carl Albing et al.
+							* [Advanced Bash-Scripting Guide](http://www.tldp.org/LDP/abs/html/) by Mendel Cooper
+							* [Startup Engineering notes on Coursera](https://d396qusza40orc.cloudfront.net/startup/lecture_slides%2Flecture4a-linux-command-line.pdf) by Balaji S. Srinivasan
+							* [Software Carpentry](http://software-carpentry.org/v4/index.html)
+						</script>
+					</section>
 				</section>
 
 				<section>
-					<h1>THE END</h1>
-					<h3>BY Johannes Choo / @aquaroris</h3>
+					<section data-markdown>
+						# end
+						Questions?
+					</section>
 				</section>
 
 			</div>
