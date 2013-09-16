@@ -227,6 +227,7 @@
 								* STDOUT
 								* STDERR
 								* program may open arbitrary files to output
+								* return value
 						</script>
 					</section>
 				</section>
@@ -309,6 +310,14 @@
 
 								alias ..='cd ..'
 								alias /='cd /'
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## sleep and ^C (Ctrl+C)
+
+								sleep 60
+								^C
 						</script>
 					</section>
 				</section>
@@ -624,6 +633,14 @@
 							wc *ptt # lines words bytes
 							wc -l *ptt # number of lines
 							wc -L *ptt #longest line length; e.g. for style checking
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						## split
+						### split a file into pieces
+
+							split -d -l 1000 *ptt 
 						</script>
 					</section>
 
