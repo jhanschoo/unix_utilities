@@ -37,204 +37,9 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>UNIX and Shell Scripting</h1>
-					<p>
-						<small>Created by <a href="http://twitter.com/aquaroris">@aquaroris</a></small>
-					</p>
+					<h1>UNIX Utilities</h1>
 				</section>
 
-				<section>
-					<section data-markdown>
-						<script type="text/template">
-							## The Unix Philosophy
-
-							From The Art of Unix Programming by esr (Eric S. Raymond)
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						* Modularity
-						* Clarity
-						* Composition
-						* Simplicity
-						* Parsimony
-						* Transparency
-						* Robustness
-						* Representation
-						* Least Surprise
-						* Silence
-						* Repair
-						* Economy
-						* Generation
-						* Optimization
-						* Extensibility
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Modularity
-
-						Simple parts. Clean interfaces.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Clarity
-
-						clear code &gt; clever code
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Composition
-
-						Design programs to be connected to other programs.
-
-						Use well-known data exchange formats.
-
-						* whitespace-separated ASCII files
-						* XML
-						* JSON
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Simplicity
-
-						Separate policy from mechanism.
-
-						Separate design from implementation.
-
-						Use tests to ensure implementation follows design.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Parsimony
-
-						Write small programs. Write big programs if you have to.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Transparency
-
-						Write for visibility for easier inspection and debugging.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Robustness
-
-						Transparent + Simple -> Robust<br>
-						Simple -> Hard to go wrong.<br>
-						Transparent -> Easy to find out what goes wrong.
-
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Representation
-
-						Put complexity in data structures.
-
-						Program logic should be as stupid and simple as possible.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Least Surprise
-
-						Always do the least surprising thing.
-
-						* Support common idioms
-						* Match user intention
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Silence
-
-						If nothing funny is happening, shut up.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Repair
-
-						If something funny is happening, make a lot of noise ASAP.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Economy
-
-						valueOf(programmer time) &gt; valueOf(machineTime)
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Generation
-
-						Automate everything you have to do more than twice.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Optimization
-
-						Prototype first. Premature optimization is the root of all evil.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Diversity
-
-						There is probably no "one true way".
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						## Extensibility
-
-						Design for the future. It will be sooner than you think.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-						# K.I.S.S
-
-						Keep It Simple, Stupid
-						</script>
-					</section>
-				</section>
-
-				<section>
-					<section data-markdown>
-						<script type="text/template">
-							## The UNIX Filesystem
-							* No C:\ drive, no D:\ drive; just one root '/' directory.
-							* Everything is a file (or a process).
-						</script>
-					</section>
-					<section>
-						<img src="images/FS-layout.png">
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							## A UNIX Program
-							* Input
-								* arguments
-								* STDIN (standard input)
-								* program may open arbitrary files for input
-							* output
-								* STDOUT
-								* STDERR
-								* program may open arbitrary files to output
-								* return value
-						</script>
-					</section>
-				</section>
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -356,9 +161,9 @@
 								pwd
 								cd .
 								cd ..
-								cd <username>
-								cd /<username>
-								# ce: no such file or directory: /<username>
+								cd username
+								cd /username
+								# cd: no such file or directory: /username
 						</script>
 					</section>
 					<section data-markdown>
@@ -586,8 +391,7 @@
 							## cut
 							### remove columns from each line of files
 
-								wget ftp://ftp.ncbi.nih.gov/genomes/Homo_sapiens/\
-								CHR_22/hs_ref_GRCh37.p13_chr22.asn.gz
+								wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Escherichia_coli_K_12_substr__W3110_uid161931/NC_007779.ptt
 								head *ptt
 								cut -f2 *ptt | head
 								cut -f2,5 *ptt | head
@@ -857,35 +661,6 @@
 							* test
 							* read
 						</script>
-					</section>
-				</section>
-
-				<section>
-					<section data-markdown>
-						<script type="text/template">
-							DUMMY SLIDE FOR COPY PASTE
-						</script>
-					</section>
-				</section>
-
-				<section>
-					<section data-markdown>
-						<script type="text/template">
-							## References
-
-							* [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/) by Eric S. Raymond
-							* [bash Cookbook](http://bashcookbook.com/) by Carl Albing et al.
-							* [Advanced Bash-Scripting Guide](http://www.tldp.org/LDP/abs/html/) by Mendel Cooper
-							* [Startup Engineering notes on Coursera](https://d396qusza40orc.cloudfront.net/startup/lecture_slides%2Flecture4a-linux-command-line.pdf) by Balaji S. Srinivasan
-							* [Software Carpentry](http://software-carpentry.org/v4/index.html)
-						</script>
-					</section>
-				</section>
-
-				<section>
-					<section data-markdown>
-						# end
-						Questions?
 					</section>
 				</section>
 
